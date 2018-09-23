@@ -16,9 +16,15 @@ Route::get('/', function () {
 });
 
 Route::match(['get','post'], '/admin', 'AdminController@login');
-Route::get('/admin/dashboard', 'AdminController@dashboard');
+
 Auth::routes();
 
-
-
 Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => ['auth']],function(){
+	Route::get('/admin/dashboard', 'AdminController@dashboard');
+	Route::get('/admin/settings', 'AdminController@settings');
+	Route::get('/admin/check-pwd', 'AdminController@chkPassword');
+	Route::match(['get','post'], '/admin/update-pwd', 'AdminController@updatePassword');
+});
+
+Route::get('/logout', 'AdminController@logout');
