@@ -225,13 +225,13 @@ $(document).ready(function(){
 		}
 	});
 
-	$("#delCat").click(function(){
+	/*$("#delCat").click(function(){
 		//alert("test");
 		if (confirm('Are you sure that you want to delete this Category?')) {
 			return true;
 		}
 		return false;
-	});
+	});*/
 
 	/*$("#delProduct").click(function(){
 		//alert("test");
