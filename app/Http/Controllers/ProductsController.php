@@ -158,7 +158,11 @@ class ProductsController extends Controller
     }
 
     public function addAttributes(Request $request, $id = null){
-        $productDetails = Product::where(['id'=>$id])->first();
+        $productDetails = Product::with('attributes')->where(['id'=>$id])->first();
+        // $productDetails = json_decode(json_encode($productDetails));
+        // echo "<pre>"; print_r($productDetails); die;
+
+
         if ($request->isMethod('post')) {
             $data = $request->all();
             // echo "<pre>"; print_r($data); die;
@@ -177,6 +181,7 @@ class ProductsController extends Controller
 
             return redirect('/admin/add-attributes/'.$id)->with('flash_message_success', 'Product Attributes Has Been Added Successfully!');
         }
+        
         return view('admin.products.add_attributes')->with(compact('productDetails'));
     }
 }
