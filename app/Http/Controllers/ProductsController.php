@@ -181,7 +181,12 @@ class ProductsController extends Controller
 
             return redirect('/admin/add-attributes/'.$id)->with('flash_message_success', 'Product Attributes Has Been Added Successfully!');
         }
-        
+
         return view('admin.products.add_attributes')->with(compact('productDetails'));
+    }
+
+    public function deleteAttribute($id = null){
+        ProductsAttribute::where(['id' => $id])->delete();
+        return redirect()->back()->with('flash_message_success', 'Attribute has been deleted succesfully!');
     }
 }

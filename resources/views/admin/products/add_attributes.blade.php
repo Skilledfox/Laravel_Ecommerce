@@ -98,7 +98,7 @@
                     <td>{{ $attribute->price }}</td>
                     <td>{{ $attribute->stock }}</td>
                     <td class="center">
-                      <a rel="{{ $attribute->id }}" rel1="delete-product" href="javascript:" class="btn btn-danger btn-mini deleteRecord">Delete</a>
+                      <a rel="{{ $attribute->id }}" rel1="delete-attribute" href="javascript:" class="btn btn-danger btn-mini deleteRecord">Delete</a>
                     </td>
                   </tr>
                 @endforeach
