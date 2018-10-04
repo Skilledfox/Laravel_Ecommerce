@@ -147,12 +147,12 @@ class ProductsController extends Controller
         return view('admin.products.view_products')->with(compact('products'));
     }
 
-    public function deleteProduct($id=null){
+    public function deleteProduct($id = null){
         Product::where(['id'=>$id])->delete();
         return redirect()->back()->with('flash_message_success', 'Product has been deleted succesfully!');
     }
 
-    public function deleteProductImage($id=null){
+    public function deleteProductImage($id = null){
         Product::where(['id' => $id])->update(['image' => '']);
         return redirect()->back()->with('flash_message_success', 'Product Image has been deleted succesfully!');
     }
@@ -188,5 +188,15 @@ class ProductsController extends Controller
     public function deleteAttribute($id = null){
         ProductsAttribute::where(['id' => $id])->delete();
         return redirect()->back()->with('flash_message_success', 'Attribute has been deleted succesfully!');
+    }
+
+    public function products($url = null){
+        // echo $url; die;
+        // Get all Categories and Sub Categories
+        $categories = Category::with('categories')->where(['parent_id' => 0])->get();
+
+        $categoryDetails = Category::where(['url' => $url])->first();
+        $productsAll = Product::where(['category_id' => $categoryDetails->id])->get();
+        return view('products.listing')->with(compact('categories', 'categoryDetails', 'productsAll'));
     }
 }
