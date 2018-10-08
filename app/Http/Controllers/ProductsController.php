@@ -200,13 +200,11 @@ class ProductsController extends Controller
         if ($categoryDetails->parent_id==0) {
             // if url is main category url
             $subCategories = Category::where(['parent_id' => $categoryDetails->id])->get();
-            $cat_ids = "";
             foreach ($subCategories as $key => $subcat) {
-                if($key==1) $cat_ids .= ",";
-                $cat_ids .= $subcat->id;
+                $cat_ids[] = $subcat->id;
             }
             // echo $cat_ids; die;
-            $productsAll = Product::whereIn('category_id', array($cat_ids))->get();
+            $productsAll = Product::whereIn('category_id', $cat_ids)->get();
             /*$productsAll = json_decode(json_encode($productsAll));
             echo "<pre>"; print_r($productsAll); die;*/
         }else{
