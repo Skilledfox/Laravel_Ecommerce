@@ -28,3 +28,24 @@ $(document).ready(function(){
 		});
 	});
 });
+
+$(document).ready(function(){
+	$("#selSize").change(function(){
+		var idSize = $(this).val();
+		/*alert(idSize);*/
+		if (idSize == "") {
+			return false;
+		}
+		$.ajax({
+			type:'get',
+			url:'/get-product-price',
+			data:{idSize:idSize},
+			success:function(resp){
+				/*alert(resp);*/
+				$("#getPrice").html("BDT "+resp);
+			},error:function(){
+				alert("Error");
+			}
+		});
+	});
+});
