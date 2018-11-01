@@ -4,7 +4,7 @@
 <div id="content">
   <div id="content-header">
     <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#">Products</a> <a href="#" class="current">Add Product Images</a> </div>
-    <h1>Products Images</h1>
+    <h1>Products Alternate Images</h1>
     <!-- Error Alert for Add Product -->
         @if(Session::has('flash_message_error'))
             <div class="alert alert-danger alert-block">
@@ -73,6 +73,14 @@
                   <th>Image</th>
                   <th>Actions</th>
                 </tr>
+                @foreach($productsImages as $image)
+                <tr>
+                  <td>{{ $image->id }}</td>
+                  <td>{{ $image->product_id }}</td>
+                  <td><img src="{{ asset('/images/backend_images/products/small/'.$image->image) }}" style="width:150px"></td>
+                  <td><a rel="{{ $image->id }}" rel1="delete-alt-image" <?php /* href="{{ url('/admin/delete-product/'.$product->id) }}" */?> href="javascript:" class="btn btn-danger btn-mini deleteRecord" title="Delete Product">Delete</a></td>
+                </tr>
+                @endforeach
               </thead>
               <tbody>
 
