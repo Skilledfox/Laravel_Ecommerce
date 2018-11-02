@@ -227,8 +227,6 @@ class ProductsController extends Controller
         return redirect()->back()->with('flash_message_success', 'Product Alternate Image(s) has been deleted succesfully!');
     }
 
-
-
     public function addAttributes(Request $request, $id = null){
         $productDetails = Product::with('attributes')->where(['id'=>$id])->first();
         // $productDetails = json_decode(json_encode($productDetails));
@@ -349,7 +347,12 @@ class ProductsController extends Controller
         // Get all Categories and Sub categories
         $categories = Category::with('categories')->where(['parent_id'=>0])->get();
 
-        return view('products.detail')->with(compact('productDetails', 'categories'));
+        // Get Product Alternate Images
+        $productAltImages = ProductsImage::where('product_id',$id)->get();
+        /*$productAltImages = json_decode(json_encode($productAltImages));
+        echo "<pre>"; print_r($productAltImages); die;*/
+
+        return view('products.detail')->with(compact('productDetails', 'categories', 'productAltImages'));
     }
 
     public function getProductPrice(Request $request){
