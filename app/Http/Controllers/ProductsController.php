@@ -355,6 +355,17 @@ class ProductsController extends Controller
         $productDetails = json_decode(json_encode($productDetails));
         /*echo "<pre>"; print_r($productDetails); die;*/
 
+        $relatedProducts = Product::where('id','!=',$id)->where(['category_id'=>$productDetails->category_id])->get();
+        // $relatedProducts = json_decode(json_encode($relatedProducts));
+        /*foreach ($relatedProducts->chunk(3) as $chunk ) {
+            foreach ($chunk as $item) {
+                echo $item; echo "<br>";
+            }
+            echo "<br><br><br>";
+        }
+        die;*/
+        /*echo "<pre>"; print_r($relatedProducts); die;*/
+
         // Get all Categories and Sub categories
         $categories = Category::with('categories')->where(['parent_id'=>0])->get();
 
@@ -365,7 +376,7 @@ class ProductsController extends Controller
 
         $total_stock = ProductsAttribute::where('product_id', $id)->sum('stock');
 
-        return view('products.detail')->with(compact('productDetails', 'categories', 'productAltImages', 'total_stock'));
+        return view('products.detail')->with(compact('productDetails', 'categories', 'productAltImages', 'total_stock', 'relatedProducts'));
     }
 
     public function getProductPrice(Request $request){
