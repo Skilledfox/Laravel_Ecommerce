@@ -29,7 +29,7 @@ $(document).ready(function(){
 	});
 });
 
-// Change Price with Size
+// Change Price & Stock with Size
 $(document).ready(function(){
 	$("#selSize").change(function(){
 		var idSize = $(this).val();
@@ -42,8 +42,17 @@ $(document).ready(function(){
 			url:'/get-product-price',
 			data:{idSize:idSize},
 			success:function(resp){
-				/*alert(resp);*/
-				$("#getPrice").html("BDT "+resp);
+				// alert(resp); return false;
+				var arr = resp.split('#');
+
+				$("#getPrice").html("BDT "+arr[0]);
+				if(arr[1]==0){
+					$("#cartButton").hide();
+					$("#Availability").text("Out Of Stock");
+				}else{
+					$("#cartButton").show();
+					$("#Availability").text("In Stock");
+				}
 			},error:function(){
 				alert("Error");
 			}

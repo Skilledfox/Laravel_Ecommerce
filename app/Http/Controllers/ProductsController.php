@@ -363,7 +363,9 @@ class ProductsController extends Controller
         /*$productAltImages = json_decode(json_encode($productAltImages));
         echo "<pre>"; print_r($productAltImages); die;*/
 
-        return view('products.detail')->with(compact('productDetails', 'categories', 'productAltImages'));
+        $total_stock = ProductsAttribute::where('product_id', $id)->sum('stock');
+
+        return view('products.detail')->with(compact('productDetails', 'categories', 'productAltImages', 'total_stock'));
     }
 
     public function getProductPrice(Request $request){
@@ -373,5 +375,7 @@ class ProductsController extends Controller
         /*echo $proArr[0]; echo $proArr[1]; die;*/
         $proAttr = ProductsAttribute::where(['product_id' => $proArr[0], 'size' => $proArr[1]])->first();
         echo $proAttr->price;
+        echo "#";
+        echo $proAttr->stock;
     }
 }

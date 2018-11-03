@@ -54,12 +54,14 @@
 								<span id="getPrice">BDT {{ $productDetails->price }}</span>
 								<label>Quantity:</label>
 								<input type="text" value="1" />
-								<button type="button" class="btn btn-fefault cart">
-									<i class="fa fa-shopping-cart"></i>
-									Add to cart
-								</button>
+								@if($total_stock>0)
+									<button type="button" class="btn btn-fefault cart" id="cartButton">
+										<i class="fa fa-shopping-cart"></i>
+										Add to cart
+									</button>
+								@endif
 							</span>
-							<p><b>Availability:</b> In Stock</p>
+							<p><b>Availability:</b> <span id="Availability">@if($total_stock>0) In Stock @else Out Of Stock @endif</p></span>
 							<p><b>Condition:</b> New</p>
 							<a href=""><img src="images/product-details/share.png" class="share img-responsive"  alt="" /></a>
 						</div><!--/product-information-->
