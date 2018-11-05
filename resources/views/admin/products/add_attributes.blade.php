@@ -5,7 +5,7 @@
   <div id="content-header">
     <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#">Products</a> <a href="#" class="current">Add Product Attributes</a> </div>
     <h1>Products Attributes</h1>
-    <!-- Error Alert for Add Product -->
+        <!-- Error Alert for Add Product -->
         @if(Session::has('flash_message_error'))
             <div class="alert alert-danger alert-block">
                 <button type="button" class="close" data-dismiss="alert">×</button> 
