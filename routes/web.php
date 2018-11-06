@@ -15,15 +15,15 @@
     return view('welcome');
 });*/
 
-// Index Page
-Route::get('/', 'IndexController@index');
+
 Route::match(['get','post'], '/admin', 'AdminController@login');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
+// Index Page
+Route::get('/', 'IndexController@index');
 
 // Category/Listing Page
 Route::get('/products/{url}', 'ProductsController@products');
@@ -31,14 +31,18 @@ Route::get('/products/{url}', 'ProductsController@products');
 // Product Detail Page
 Route::get('product/{id}', 'ProductsController@product');
 
+// Get Product Attribute Price
+Route::get('/get-product-price', 'ProductsController@getProductPrice');
+
 // Add to Cart Route
 Route::match(['get','post'], '/add-cart', 'ProductsController@addtocart');
 
 // Cart Page
 Route::match(['get','post'], '/cart', 'ProductsController@cart');
 
-// Get Product Attribute Price
-Route::get('/get-product-price', 'ProductsController@getProductPrice');
+// Delete Product from Cart Page
+Route::get('/cart/delete-product/{id}', 'ProductsController@deleteCartProduct');
+
 
 Route::group(['middleware' => ['auth']],function(){
 	Route::get('/admin/dashboard', 'AdminController@dashboard');

@@ -43,7 +43,7 @@
 					@foreach($userCart as $cart)
 					<tr>
 						<td class="cart_product">
-							<a href=""><img src="images/cart/one.png" alt=""></a>
+							<a href=""><img style="width: 100px;" src="{{ asset('images/backend_images/products/small/'.$cart->image) }}" alt=""></a>
 						</td>
 						<td class="cart_description">
 							<h4><a href="">{{ $cart->product_name }}</a></h4>
@@ -63,7 +63,7 @@
 							<p class="cart_total_price">BDT {{ $cart->price*$cart->quantity }}</p>
 						</td>
 						<td class="cart_delete">
-							<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+							<a class="cart_quantity_delete" href="{{ url('/cart/delete-product/'.$cart->id) }}"><i class="fa fa-times"></i></a>
 						</td>
 					</tr>
 					@endforeach
