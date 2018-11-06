@@ -4,6 +4,23 @@
 <section>
 	<div class="container">
 		<div class="row">
+			<!-- Error Alert for Add Cart -->
+	        @if(Session::has('flash_message_error'))
+	            <div class="alert alert-danger alert-block">
+	                <button type="button" class="close" data-dismiss="alert">×</button> 
+	                <strong>{!! session('flash_message_error') !!}</strong>
+	            </div>
+	        @endif
+	        <!-- End Error Alert for Add Cart -->
+
+	        <!-- Success Alert for Add Cart  -->
+	        @if(Session::has('flash_message_success'))
+	            <div class="alert alert-success alert-block">
+	                <button type="button" class="close" data-dismiss="alert">×</button> 
+	                <strong>{!! session('flash_message_success') !!}</strong>
+	            </div>
+	        @endif
+	        <!-- End Success Alert for Add Cart -->
 			<div class="col-sm-3">
 				@include('layouts.frontLayout.front_sidebar')
 			</div>
