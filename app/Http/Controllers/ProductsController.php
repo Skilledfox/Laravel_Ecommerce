@@ -11,6 +11,7 @@ use App\Category;
 use App\Product;
 use App\ProductsAttribute;
 use App\ProductsImage;
+use App\Coupon;
 use DB;
 
 
@@ -456,11 +457,6 @@ class ProductsController extends Controller
         return view('products.cart')->with(compact('userCart'));
     }
 
-    public function deleteCartProduct($id=null){
-        DB::table('cart')->where('id',$id)->delete();
-        return redirect('cart')->with('flash_message_success', 'Product has been deleted from Cart!');
-    }
-
     public function updateCartQuantity($id=null, $quantity=null){
         $getCartDetails = DB::table('cart')->where('id',$id)->first();
         $getAttributeStock = ProductsAttribute::where('sku',$getCartDetails->product_code)->first();
@@ -473,4 +469,24 @@ class ProductsController extends Controller
             return redirect('cart')->with('flash_message_error', 'Required Product Quantity is not Available!');
         }
     }
+
+    public function deleteCartProduct($id=null){
+        DB::table('cart')->where('id',$id)->delete();
+        return redirect('cart')->with('flash_message_success', 'Product has been deleted from Cart!');
+    }
+
+    public function applyCoupon(Request $request){
+            $data = $request->all();
+            // echo "<pre>"; print_r($data); die;
+            $couponCount = Coupon::where('coupon_code',$data['coupon_code'])->count();
+            if ($couponCount == 0) {
+                return redirect()->back()->with('flash_message_error', 'Coupon is not Valid!');
+            }else{
+                // with perform other checks like Active/Inactive, Expiry date...
+                echo "Success";
+            }
+
+    }
+
+
 }

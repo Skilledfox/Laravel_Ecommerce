@@ -31,9 +31,6 @@ Route::get('/products/{url}', 'ProductsController@products');
 // Product Detail Page
 Route::get('product/{id}', 'ProductsController@product');
 
-// Get Product Attribute Price
-Route::get('/get-product-price', 'ProductsController@getProductPrice');
-
 // Add to Cart Route
 Route::match(['get','post'], '/add-cart', 'ProductsController@addtocart');
 
@@ -45,6 +42,13 @@ Route::get('/cart/update-quantity/{id}/{quantity}', 'ProductsController@updateCa
 
 // Delete Product from Cart Page
 Route::get('/cart/delete-product/{id}', 'ProductsController@deleteCartProduct');
+
+// Get Product Attribute Price
+Route::any('/get-product-price', 'ProductsController@getProductPrice');
+
+// Apply Coupon
+Route::post('/cart/apply-coupon', 'ProductsController@applyCoupon');
+
 
 
 Route::group(['middleware' => ['auth']],function(){
