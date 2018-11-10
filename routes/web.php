@@ -83,6 +83,9 @@ Route::group(['middleware' => ['auth']],function(){
 	Route::get('/admin/view-coupons', 'CouponsController@viewCoupons');
 	Route::get('/admin/delete-coupon/{id}', 'CouponsController@deleteCoupon');
 
+	// Admin Banner Routes
+	Route::match(['get','post'], '/admin/add-banner','BannersController@addBanner');
+
 });
 
 Route::get('/logout', 'AdminController@logout');
