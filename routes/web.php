@@ -49,6 +49,8 @@ Route::any('/get-product-price', 'ProductsController@getProductPrice');
 // Apply Coupon
 Route::post('/cart/apply-coupon', 'ProductsController@applyCoupon');
 
+// User Register/Login
+Route::match(['get','post'], '/login-register', 'UsersController@register');
 
 
 Route::group(['middleware' => ['auth']],function(){
