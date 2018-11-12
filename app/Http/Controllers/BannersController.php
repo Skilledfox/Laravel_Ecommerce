@@ -48,4 +48,18 @@ class BannersController extends Controller
 
     	return view('admin.banners.add_banner');
     }
+
+    public function editBanner(Request $request, $id=null){
+    	if($request->isMethod('post')){
+    		$data = $request->all();
+    		echo "<pre>"; print_r($data); die;
+    	}
+    	$bannerDetails = Banner::where('id',$id)->first();
+    	return view('admin.banners.edit_banner')->with(compact('bannerDetails'));
+    }
+
+    public function viewBanners(){
+    	$banners = Banner::get();
+    	return view('admin.banners.view_banners')->with(compact('banners'));
+    }
 }
