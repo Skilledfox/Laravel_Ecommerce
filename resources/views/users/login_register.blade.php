@@ -4,6 +4,23 @@
 <section id="form" style="margin-top:20px;"><!--form-->
 	<div class="container">
 		<div class="row">
+			<!-- Error Alert for Add Cart -->
+	        @if(Session::has('flash_message_error'))
+	            <div class="alert alert-danger alert-block">
+	                <button type="button" class="close" data-dismiss="alert">×</button> 
+	                <strong>{!! session('flash_message_error') !!}</strong>
+	            </div>
+	        @endif
+	        <!-- End Error Alert for Add Cart -->
+
+	        <!-- Success Alert for Add Cart  -->
+	        @if(Session::has('flash_message_success'))
+	            <div class="alert alert-success alert-block">
+	                <button type="button" class="close" data-dismiss="alert">×</button> 
+	                <strong>{!! session('flash_message_success') !!}</strong>
+	            </div>
+	        @endif
+	        <!-- End Success Alert for Add Cart -->
 			<div class="col-sm-4 col-sm-offset-1">
 				<div class="login-form"><!--login form-->
 					<h2>Login to your account</h2>
@@ -28,7 +45,7 @@
 						<input id="name" name="name" type="text" placeholder="Name"/>
 						<input id="email" name="email" type="email" placeholder="Email Address"/>
 						<input id="password" name="password" type="password" placeholder="Password"/>
-						<button type="submit" class="btn btn-default">Signup</button>s
+						<button type="submit" class="btn btn-default">Signup</button>
 					</form>
 				</div><!--/sign up form-->
 			</div>

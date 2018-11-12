@@ -52,6 +52,9 @@ Route::post('/cart/apply-coupon', 'ProductsController@applyCoupon');
 // User Register/Login
 Route::match(['get','post'], '/login-register', 'UsersController@register');
 
+// Check if user already exists
+Route::match(['get','post'], '/check-email', 'UsersController@checkEmail');
+
 
 Route::group(['middleware' => ['auth']],function(){
 	Route::get('/admin/dashboard', 'AdminController@dashboard');
