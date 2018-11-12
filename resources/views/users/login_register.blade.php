@@ -44,7 +44,7 @@
 					<form id="registerForm" name="registerForm" method="post" action="{{ url('/login-register') }}">{{ csrf_field() }}
 						<input id="name" name="name" type="text" placeholder="Name"/>
 						<input id="email" name="email" type="email" placeholder="Email Address"/>
-						<input id="password" name="password" type="password" placeholder="Password"/>
+						<input id="myPassword" name="password" type="password" placeholder="Password"/>
 						<button type="submit" class="btn btn-default">Signup</button>
 					</form>
 				</div><!--/sign up form-->

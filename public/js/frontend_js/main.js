@@ -141,4 +141,12 @@ $().ready(function(){
 		}
 	});
 
+	// Password Strength Script
+    $('#myPassword').passtrength({
+      minChars: 6,
+      passwordToggle: true,
+      tooltip: true,
+      eyeImg: "/images/frontend_images/eye.svg"
+	});
+
 });
