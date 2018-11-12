@@ -111,8 +111,10 @@ class ProductsController extends Controller
                     Image::make($image_tmp)->resize(600,600)->save($medium_image_path);
                     Image::make($image_tmp)->resize(300,300)->save($small_image_path);
                 }
-            }else{
+            }else if (!empty($data['current_image'])) {
                 $filename = $data['current_image'];
+            }else{
+                $filename = '';
             }
 
             if (empty($data['description'])) {
