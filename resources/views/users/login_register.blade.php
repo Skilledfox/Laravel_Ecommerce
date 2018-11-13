@@ -41,7 +41,7 @@
 			<div class="col-sm-4">
 				<div class="signup-form"><!--sign up form-->
 					<h2>New User Signup!</h2>
-					<form id="registerForm" name="registerForm" method="post" action="{{ url('/login-register') }}">{{ csrf_field() }}
+					<form id="registerForm" name="registerForm" method="post" action="{{ url('/user-register') }}">{{ csrf_field() }}
 						<input id="name" name="name" type="text" placeholder="Name"/>
 						<input id="email" name="email" type="email" placeholder="Email Address"/>
 						<input id="myPassword" name="password" type="password" placeholder="Password"/>

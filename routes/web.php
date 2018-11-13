@@ -49,8 +49,16 @@ Route::any('/get-product-price', 'ProductsController@getProductPrice');
 // Apply Coupon
 Route::post('/cart/apply-coupon', 'ProductsController@applyCoupon');
 
-// User Register/Login
-Route::match(['get','post'], '/login-register', 'UsersController@register');
+// User Login/Register PAge
+Route::get('/login-register', 'UsersController@userLoginRegister');
+
+// Users Register Form Submit
+Route::post('/user-register', 'UsersController@register');
+
+// Users Logout
+Route::get('/user-logout', 'UsersController@logout');
+
+/*Route::match(['get','post'], '/login-register', 'UsersController@register');*/
 
 // Check if user already exists
 Route::match(['get','post'], '/check-email', 'UsersController@checkEmail');
