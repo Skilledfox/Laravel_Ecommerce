@@ -61,7 +61,12 @@ Route::post('/user-login', 'UsersController@login');
 // Users Logout
 Route::get('/user-logout', 'UsersController@logout');
 
-/*Route::match(['get','post'], '/login-register', 'UsersController@register');*/
+// All Routes after Login
+Route::group(['middleware'=>['frontlogin']], function(){
+	// Users Account Page
+	Route::match(['get','post'], '/account', 'UsersController@account');
+});
+
 
 // Check if user already exists
 Route::match(['get','post'], '/check-email', 'UsersController@checkEmail');
