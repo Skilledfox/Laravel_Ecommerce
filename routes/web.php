@@ -55,6 +55,9 @@ Route::get('/login-register', 'UsersController@userLoginRegister');
 // Users Register Form Submit
 Route::post('/user-register', 'UsersController@register');
 
+// Users Login Form Submit
+Route::post('/user-login', 'UsersController@login');
+
 // Users Logout
 Route::get('/user-logout', 'UsersController@logout');
 

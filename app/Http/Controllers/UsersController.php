@@ -12,6 +12,18 @@ class UsersController extends Controller
         return view('users.login_register');
     }
 
+    public function login(Request $request){
+        if ($request->isMethod('post')){
+            $data = $request->all();
+            // echo "<pre>"; print_r($data); die;
+            if (Auth::attempt(['email'=>$data['email'], 'password'=>$data['password']])) {
+                return redirect('/cart');
+            }else{
+                return redirect()->back()->with('flash_message_error', 'Invalid Email or Password!');
+            }
+        }
+    }
+
     public function register(Request $request){
     	if ($request->isMethod('post')) {
     		$data = $request->all();
