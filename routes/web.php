@@ -69,6 +69,8 @@ Route::group(['middleware'=>['frontlogin']], function(){
 	Route::post('/check-user-pwd', 'UsersController@chkUserPassword');
 	// Update User Password
 	Route::post('/update-user-pwd', 'UsersController@updatePassword');
+	// Checkout Page
+	Route::match(['get','post'], '/checkout', 'ProductsController@checkout');
 });
 
 

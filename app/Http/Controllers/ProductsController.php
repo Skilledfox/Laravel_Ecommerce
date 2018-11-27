@@ -539,5 +539,9 @@ class ProductsController extends Controller
 
     }
 
+    public function checkout(){
+        return view('products.checkout');
+    }
+
 
 }
