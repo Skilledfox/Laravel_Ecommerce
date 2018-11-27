@@ -65,6 +65,7 @@ Route::get('/user-logout', 'UsersController@logout');
 Route::group(['middleware'=>['frontlogin']], function(){
 	// Users Account Page
 	Route::match(['get','post'], '/account', 'UsersController@account');
+	Route::post('/check-user-pwd', 'UsersController@chkUserPassword');
 });
 
 
