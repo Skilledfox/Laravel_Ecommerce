@@ -9,25 +9,30 @@
 					<div class="login-form"><!--login form-->
 						<h2>Bill To</h2>
 							<div class="form-group">
-								<input type="text" placeholder="Billing Name" class="form-control" />
+								<input name="billing_name" id="billing_name" value="{{ $userDetails->name }}" type="text" placeholder="Billing Name" class="form-control" />
 							</div>
 							<div class="form-group">
-								<input type="text" placeholder="Billing Address" class="form-control" />
+								<input name="billing_address" id="billing_address" value="{{ $userDetails->address }}" type="text" placeholder="Billing Address" class="form-control" />
 							</div>
 							<div class="form-group">
-								<input type="text" placeholder="Billing City" class="form-control" />
+								<input name="billing_city" id="billing_city" value="{{ $userDetails->city }}" type="text" placeholder="Billing City" class="form-control" />
 							</div>
 							<div class="form-group">
-								<input type="text" placeholder="Billing State" class="form-control" />
+								<input name="billing_state" id="billing_state" value="{{ $userDetails->state }}" type="text" placeholder="Billing State" class="form-control" />
 							</div>
 							<div class="form-group">
-								<input type="text" placeholder="Billing Country" class="form-control" />
+								<select id="billing_country" name="billing_country" class="form-control">
+									<option value="">Select Country</option>
+									@foreach($countries as $country)
+										<option value="{{ $country->country_name }}" @if($country->country_name == $userDetails->country) selected @endif>{{ $country->country_name }}</option>
+									@endforeach
+								</select>
 							</div>
 							<div class="form-group">
-								<input type="text" placeholder="Billing Pincode" class="form-control" />
+								<input name="billing_pincode" id="billing_pincode" value="{{ $userDetails->pincode }}" type="text" placeholder="Billing Pincode" class="form-control" />
 							</div>
 							<div class="form-group">
-								<input type="text" placeholder="Billing Mobile" class="form-control" />
+								<input name="billing_mobile" id="billing_mobile" value="{{ $userDetails->mobile }}" type="text" placeholder="Billing Mobile" class="form-control" />
 							</div>
 							<div class="form-check">
 								<input type="checkbox" class="form-check-input" id="billtoship">
