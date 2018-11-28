@@ -600,7 +600,15 @@ class ProductsController extends Controller
         $userDetails = User::where('id',$user_id)->first();
         $shippingDetails = DeliveryAddress::where('user_id', $user_id)->first();
         $shippingDetails = json_decode(json_encode($shippingDetails));
-        return view('products.order_review')->with(compact('userDetails', 'shippingDetails'));
+
+        // 
+        $userCart = DB::table('cart')->where(['user_email'=>$user_email])->get();
+        foreach ($userCart as $key => $product) {
+             $productDetails = Product::where('id',$product->product_id)->first();
+             $userCart[$key]->image = $productDetails->image;
+        }
+
+        return view('products.order_review')->with(compact('userDetails', 'shippingDetails', 'userCart'));
     }
 
 
