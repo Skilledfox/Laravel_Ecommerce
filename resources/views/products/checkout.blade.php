@@ -3,6 +3,12 @@
 
 <section id="form" style="margin-top: 20px;"><!--form-->
 	<div class="container">
+		<div class="breadcrumbs">
+			<ol class="breadcrumb">
+			  <li><a href="{{url('/')}}">Home</a></li>
+			  <li class="active">Checkout</li>
+			</ol>
+		</div>
 		<!-- Error Alert for Add Cart -->
 	        @if(Session::has('flash_message_error'))
 	            <div class="alert alert-danger alert-block">
