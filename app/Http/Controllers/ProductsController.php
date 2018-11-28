@@ -602,7 +602,6 @@ class ProductsController extends Controller
         $shippingDetails = DeliveryAddress::where('user_id', $user_id)->first();
         $shippingDetails = json_decode(json_encode($shippingDetails));
 
-        // 
         $userCart = DB::table('cart')->where(['user_email'=>$user_email])->get();
         foreach ($userCart as $key => $product) {
              $productDetails = Product::where('id',$product->product_id)->first();
@@ -610,6 +609,13 @@ class ProductsController extends Controller
         }
 
         return view('products.order_review')->with(compact('userDetails', 'shippingDetails', 'userCart'));
+    }
+
+    public function placeOrder(Request $request){
+        if ($request->isMethod('post')) {
+            $data = $request->all();
+            echo "<pre>"; print_r($data); die;
+        }
     }
 
 

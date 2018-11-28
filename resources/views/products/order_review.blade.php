@@ -153,8 +153,8 @@
 									</td>
 								</tr>
 								<tr>
-									<td>Total</td>
-									<td><span>BDT {{ $total_amount - Session::get('CouponAmount') }}</span></td>
+									<td>Grand Total</td>
+									<td><span>BDT {{ $grand_total = $total_amount - Session::get('CouponAmount') }}</span></td>
 								</tr>
 							</table>
 						</td>
@@ -162,17 +162,23 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="payment-options">
-			<span>
-				<label><input type="checkbox"> Direct Bank Transfer</label>
-			</span>
-			<span>
-				<label><input type="checkbox"> Check Payment</label>
-			</span>
-			<span>
-				<label><input type="checkbox"> Paypal</label>
-			</span>
-		</div>
+		<form name="paymentForm" id="paymentForm" action="{{ url('/place-order') }}" method="post">{{ csrf_field() }}
+			<input type="hidden" name="grand_total" value="{{ $grand_total }}">
+			<div class="payment-options">
+				<span>
+					<label><strong>Select Payment Method</strong></label>
+				</span>
+				<span>
+					<label><input type="radio" name="payment_method" id="COD" value="COD"><strong>Cash On Delivery</strong></label>
+				</span>
+				<span>
+					<label><input type="radio" name="payment_method" id="Paypal" value="Paypal"><strong>Paypal</strong></label>
+				</span>
+				<span style="float: right;">
+					<button type="submit" class="btn btn-warning" onclick="return selectPaymentMethod();">Place Order</button>
+				</span>
+			</div>
+		</form>
 	</div>
 </section> <!--/#cart_items-->
 
