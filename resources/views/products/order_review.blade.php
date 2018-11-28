@@ -128,6 +128,7 @@
 								<p class="cart_total_price">BDT {{ $cart->price*$cart->quantity }}</p>
 							</td>
 						</tr>
+						<?php $total_amount = $total_amount + ($cart->price*$cart->quantity); ?>
 					@endforeach
 					<tr>
 						<td colspan="4">&nbsp;</td>
@@ -135,19 +136,25 @@
 							<table class="table table-condensed total-result">
 								<tr>
 									<td>Cart Sub Total</td>
-									<td>$59</td>
-								</tr>
-								<tr>
-									<td>Exo Tax</td>
-									<td>$2</td>
+									<td>BDT {{ $total_amount }}</td>
 								</tr>
 								<tr class="shipping-cost">
-									<td>Shipping Cost</td>
-									<td>Free</td>										
+									<td>Shipping Cost (+)</td>
+									<td>BDT 0</td>	
+								</tr>
+								<tr class="shipping-cost">
+									<td>Discount Amount (-)</td>
+									<td>
+										@if(!empty(Session::get('CouponAmount')))
+											BDT {{ Session::get('CouponAmount') }}
+										@else
+											BDT 0
+										@endif
+									</td>
 								</tr>
 								<tr>
 									<td>Total</td>
-									<td><span>$61</span></td>
+									<td><span>BDT {{ $total_amount - Session::get('CouponAmount') }}</span></td>
 								</tr>
 							</table>
 						</td>

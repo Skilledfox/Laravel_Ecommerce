@@ -550,6 +550,7 @@ class ProductsController extends Controller
 
         // Check if Shipping Address Exists
         $shippingCount = DeliveryAddress::where('user_id', $user_id)->count();
+        $shippingDetails = array();
         if ($shippingCount>0) {
             $shippingDetails = DeliveryAddress::where('user_id', $user_id)->first();
         }
